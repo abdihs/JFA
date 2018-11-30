@@ -2,7 +2,6 @@
 <html lang="nb">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="UTF-8">
 	<title>Registrering</title>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.css">
@@ -18,9 +17,9 @@
     <a  class="active" href="finalassignmentengelsk.html" title="Gå tilbake til forsiden.">Hjem</a>
      <a href="finalassignmentengelsk.html" title="Trykk her for å lese om oss.">Om oss</a>
       <a href="finalassignmentengelsk.html" title="Trykk her for å lese om vår ide.">Vår ide</a>
-       <a target="blank" href="kontakt.html" title="Trykk her for å komme til kontaktsiden.">Kontakt</a>
+       <a target="blank" href="contact.html" title="Trykk her for å komme til kontaktsiden.">Kontakt</a>
         <div style="float: right;">
-        
+        <a href = "simple.html"> Enkel side</a>
       <a href="finalREngelsk.html">English</a>
       
       </div>
@@ -43,7 +42,7 @@
 	<script type="text/javascript">
 		var tekstDatabase = firebase.database();
 		var filDatabase  = firebase.storage();
-		var Varer = tekstDatabase.ref("Varer"); 
+		var Registrer = tekstDatabase.ref("Registrer"); 
 	</script>
 	
 
@@ -59,15 +58,15 @@
 
 		
 		<div class="skrivinn">
-		<form id="regVarer">			
-			<textarea  class="box2" id="inpVarenavn" type="text" required placeholder="Navn"></textarea>
-			<textarea class="box2" id="inpPris" type="number" required placeholder="Email-adresse"></textarea>
-			<textarea class="box2" id="inpVarenavn" type="text" required placeholder="Gjennta email-adressen"></textarea>
-			<select class="box2" id="inpKategori">
+			<textarea  class="box2" type="text" required placeholder="Navn"></textarea>
+			<textarea class="box2" type="number" required placeholder="Mail-adress"></textarea>
+			<textarea class="box2" type="text" required placeholder="Bekreft mail-adress"></textarea>
+
+			<select class="box2">
 				<option>Velg kategori</option>
-				<option value="stue">Hjemme hos noen</option>
-				<option value="soverom">Vert</option>
-				<option value="kjøkken">Annet</option>
+				<option value="Hjem">Hjemme hos noen</option>
+				<option value="Vert">Vert</option>
+				<option value="Annet">Annet</option>
 			</select>
 			
 			<br>
@@ -93,52 +92,6 @@
 	</div>
 </a>
 
-	<script type="text/javascript">
-		var regVarer = document.getElementById('regVarer');
-		var inpVarenavn = document.getElementById('inpVarenavn');
-		var inpPris = document.getElementById('inpPris');
-		var inpKategori = document.getElementById('inpKategori');
-		function leggTilData_i_Firebase(evt) {
-			evt.preventDefault();
-				varer.push({
-					Varenavn:inpVarenavn.value,
-					Pris:inpPris.value,
-					Kategori:inpKategori.value,
-					url:globalUrl
-				});
-		}
-		regVarer.addEventListener("submit",leggTilData_i_Firebase);
-	</script>	
-
-		
-
-	<script>
-		var inpBilde  = document.getElementById('inpBilde');
-		var bilde  = document.getElementById('bilde');
-		var opplastingsProsent = document.getElementById('opplastingsProsent');
-		var globalUrl = "";		
-		function leggTilBilde(evt) {
-			var file = evt.target.files[0];
-			var bilder = filDatabase.ref("bilder/" + file.name);
-			var mensBildeLastesNed = bilder.put(file);
-			mensBildeLastesNed.on("state_changed",
-				function progress(snapshot) {
-					var prosent=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-					opplastingsProsent.value = prosent;
-				},
-				function error(err){
-					alert("Noe hendte - filen kan ikke lastes opp...");
-				},
-				function complete() {
-					bilder.getDownloadURL().then(function(url){
-											globalUrl=url;
-											bilde.src=url
-										});					
-				}
-			);
-		}
-		inpBilde.addEventListener("change", leggTilBilde);
-	</script>
 
 
 

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registrering</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.css">
+	<link rel="stylesheet" type="text/css" href="finalR.css" />
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	
+	<link rel="stylesheet" type="text/css" href="sweetalert.css">
+
+</head>
+
+<body id="hjem" style="background-color: lightgrey;">
+  <div class="topnav" tabindex="0":focus>
+    <a  class="active" href="finalassignmentengelsk.html" title="Gå tilbake til forsiden.">Hjem</a>
+     <a href="finalassignmentengelsk.html" title="Trykk her for å lese om oss.">Om oss</a>
+      <a href="finalassignmentengelsk.html" title="Trykk her for å lese om vår ide.">Vår ide</a>
+       <a target="blank" href="contact.html" title="Trykk her for å komme til kontaktsiden.">Kontakt</a>
+        <div style="float: right;">
+        <a href = "simple.html"> Enkel side</a>
+      <a href="finalREngelsk.html">English</a>
+      
+      </div>
+    </div>
+
+	<div class="top"></div>
+	
+	<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+	<script>
+	  var config = {
+   		apiKey: "AIzaSyAGep4GxcnomGeFciQDLHPI24A9cg6ULCk",
+    	authDomain: "ikea-prosjekt.firebaseapp.com",
+    	databaseURL: "https://ikea-prosjekt.firebaseio.com",
+    	storageBucket: "ikea-prosjekt.appspot.com",
+    	messagingSenderId: "368672913845"
+ 	 	};
+ 	 	firebase.initializeApp(config);
+	</script>
+
+	<script type="text/javascript">
+		var tekstDatabase = firebase.database();
+		var filDatabase  = firebase.storage();
+		var Registrer = tekstDatabase.ref("Registrer"); 
+	</script>
+	
+
+
+		
+
+		<div class="box3">
+        <h1 id="OmOss" style="z-index: 3;">Registrer</h1>
+		<p style="color: lightgrey;" class="posisjonforteksten">Her kan du registrere deg forså å velge en kategori av hvem du vil feire jul sammen med! Legg til Navn og mailadresse og trykk "Godkjenn". 
+		<br><br>
+		Skriv gjerne til oss hvordan du har opplevd dette. Kontakt oss gjerne for eventuelle spørsmål eller tilbakemeldinger.
+		</p>
+
+		
+		<div class="skrivinn">
+		<form id="regVarer">			
+			<textarea  class="box2" id="inpNavn" type="text" required placeholder="Navn"></textarea>
+			<textarea class="box2" id="inpMail" type="number" required placeholder="Mail-adress"></textarea>
+			<textarea class="box2" id="inpMail2" type="text" required placeholder="Bekreft mail-adress"></textarea>
+			<select class="box2" id="inpKategori">
+				<option>Velg kategori</option>
+				<option value="Hjem">Hjemme hos noen</option>
+				<option value="Vert">Vert</option>
+				<option value="Annet">Annet</option>
+			</select>
+			
+			<br>
+
+			<button class="button2" onclick="validation();">
+			Godkjenn
+			</button>
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+			<script type="text/javascript">
+			function validation()
+			{
+
+				swal("Godkjent!", "All informasjon blir sendt til deg på E-mail! :-)", "success");
+
+			}
+		</script>	
+
+
+		</form>
+		</div>
+	</div>
+</a>
+
+
+
+
+
+</body>
+</html>

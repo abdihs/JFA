@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head lang="nb">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registrering</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.css">
+	<link rel="stylesheet" type="text/css" href="finalR.css" />
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	
+
+</head>
+<body style="background-color: #381846;">
+
+	<div class="top"></div>
+	
+	<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+	<script>
+	  var config = {
+   		apiKey: "AIzaSyAGep4GxcnomGeFciQDLHPI24A9cg6ULCk",
+    	authDomain: "ikea-prosjekt.firebaseapp.com",
+    	databaseURL: "https://ikea-prosjekt.firebaseio.com",
+    	storageBucket: "ikea-prosjekt.appspot.com",
+    	messagingSenderId: "368672913845"
+ 	 	};
+ 	 	firebase.initializeApp(config);
+	</script>
+
+	<script type="text/javascript">
+		var tekstDatabase = firebase.database();
+		var filDatabase  = firebase.storage();
+		var Varer = tekstDatabase.ref("Varer"); 
+	</script>
+	
+	<div class="box3">
+
+		
+		<h3>REGISTRER DEG HER: </h3>
+
+		<div class="box1">
+			<strong> <h2> Her kan du registrere deg for så å velge kategori på hvem du vil feire jul sammen med!
+			 Legg til Navn og mailadresse og trykk "Godkjenn".</h2>  </strong>
+		</div>
+
+		<form id="regVarer">			
+			<textarea  class="box2" id="inpVarenavn" type="text" required placeholder="Navn"></textarea>
+			<textarea class="box2" id="inpPris" type="number" required placeholder="Mailadresse"></textarea>
+			<textarea class="box2" id="inpVarenavn" type="text" required placeholder="Bekreft mailadresse"></textarea>
+			<select class="box2" id="inpKategori">
+				<option>Velg kategori</option>
+				<option value="stue">Hjemme hos noen</option>
+				<option value="soverom">Lokalet</option>
+				<option value="kjøkken">Annet</option>
+			</select>
+			
+			<progress value="0" max = "100" id="opplastingsProsent" class="box2">0%</progress>
+			<br>
+			<button class="button2" type="submit"><strong>GODKJENN</strong></button>
+		</form>
+
+	</div>
+</a>
+
+	<script type="text/javascript">
+		var regVarer = document.getElementById('regVarer');
+		var inpVarenavn = document.getElementById('inpVarenavn');
+		var inpPris = document.getElementById('inpPris');
+		var inpKategori = document.getElementById('inpKategori');
+		function leggTilData_i_Firebase(evt) {
+			evt.preventDefault();
+				varer.push({
+					Varenavn:inpVarenavn.value,
+					Pris:inpPris.value,
+					Kategori:inpKategori.value,
+					url:globalUrl
+				});
+		}
+		regVarer.addEventListener("submit",leggTilData_i_Firebase);
+	</script>	
+
+		
+
+	<script>
+		var inpBilde  = document.getElementById('inpBilde');
+		var bilde  = document.getElementById('bilde');
+		var opplastingsProsent = document.getElementById('opplastingsProsent');
+		var globalUrl = "";		
+		function leggTilBilde(evt) {
+			var file = evt.target.files[0];
+			var bilder = filDatabase.ref("bilder/" + file.name);
+			var mensBildeLastesNed = bilder.put(file);
+			mensBildeLastesNed.on("state_changed",
+				function progress(snapshot) {
+					var prosent=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+					opplastingsProsent.value = prosent;
+				},
+				function error(err){
+					alert("Noe hendte - filen kan ikke lastes opp...");
+				},
+				function complete() {
+					bilder.getDownloadURL().then(function(url){
+											globalUrl=url;
+											bilde.src=url
+										});					
+				}
+			);
+		}
+		inpBilde.addEventListener("change", leggTilBilde);
+	</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 1% 5%;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed; 
+  bottom: 1%;
+  right: 25%;
+  width: 15%;
+}
+
+.form-popup {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  width: 20%;
+  height: 54%;
+  right: 5%;
+  
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+
+.form-container .cancel {
+  background-color: red;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+
+<button class="open-button" onclick="openForm()">INNLOGGING</button>
+
+<div class="form-popup" id="myForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Logg inn</h1>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Skriv inn Emailen din:" name="email" required>
+
+    <label for="psw"><b>Passord</b></label>
+    <input type="password" placeholder="Skriv inn passordet ditt:" name="psw" required>
+
+    <button type="submit" class="btn">Login</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+<script>
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+
+</body>
+</html>

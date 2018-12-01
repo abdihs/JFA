@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Registration</title>
+	<title>Register</title>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.css">
 	<link rel="stylesheet" type="text/css" href="finalR.css" />
@@ -16,11 +16,11 @@
   <div class="topnav" tabindex="0":focus>
     <a  class="active" href="finalassignmentengelsk.html" title="Gå tilbake til forsiden.">Home</a>
      <a href="finalassignmentengelsk.html" title="Trykk her for å lese om oss.">About us</a>
-      <a href="finalassignmentengelsk.html" title="Trykk her for å lese om vår ide.">Our idea</a>
+      <a href="finalassignmentengelsk.html" title="Trykk her for å lese om vår ide.">Our Idea</a>
        <a target="blank" href="contact.html" title="Trykk her for å komme til kontaktsiden.">Contact</a>
         <div style="float: right;">
-        
-      <a href="finalR.html">Norsk</a>
+        <a href = "simpleengelsk.html"> Simplyfied</a>
+      <a href="finalR.html">Norwegian</a>
       
       </div>
     </div>
@@ -42,7 +42,7 @@
 	<script type="text/javascript">
 		var tekstDatabase = firebase.database();
 		var filDatabase  = firebase.storage();
-		var Varer = tekstDatabase.ref("Varer"); 
+		var Registrer = tekstDatabase.ref("Registrer"); 
 	</script>
 	
 
@@ -56,25 +56,26 @@
 		Please write a message to us if you have any questions, feedback or if you have experienced this yourself.  
 		</p>
 
+
 		
 		<div class="skrivinn">
-		
-
-			<label>			
-			<textarea  class="box2" id="inpVarenavn" type="text" required placeholder="Name"></textarea>
+			<label>
+			<label>
+			<textarea class="box2" type="text" required placeholder="Name"></textarea>
 			</label>
 			<label>
-			<textarea class="box2" id="inpPris" type="number" required placeholder="Email-adress"></textarea>
+			<textarea class="box2" type="number" required placeholder="Mail-adress"></textarea>
 			</label>
 			<label>
-			<textarea class="box2" id="inpVarenavn" type="text" required placeholder="Approve email-adress"></textarea>
-			</label>
+			<textarea class="box2" type="text" required placeholder="Approve mail-adress"></textarea>
+			</label></label>
+			
 			<label>
-			<select class="box2" id="inpKategori">
+			<select  class="box2">
 				<option>Choose category</option>
-				<option value="stue">At home with somebody </option>
-				<option value="soverom">Venue</option>
-				<option value="kjøkken">Something else</option>
+				<option value="Hjem">At home with somebody	</option>
+				<option value="Vert">Venue</option>
+				<option value="Annet">Something else</option>
 			</select>
 			</label>
 			<br>
@@ -89,7 +90,7 @@
 			function validation()
 			{
 
-				swal("Complete!", "All information will be sent to your email! :-)", "success");
+				swal("Godkjent!", "All informasjon blir sendt til deg på E-mail! :-)", "success");
 
 			}
 		</script>	
@@ -100,52 +101,6 @@
 	</div>
 </a>
 
-	<script type="text/javascript">
-		var regVarer = document.getElementById('regVarer');
-		var inpVarenavn = document.getElementById('inpVarenavn');
-		var inpPris = document.getElementById('inpPris');
-		var inpKategori = document.getElementById('inpKategori');
-		function leggTilData_i_Firebase(evt) {
-			evt.preventDefault();
-				varer.push({
-					Varenavn:inpVarenavn.value,
-					Pris:inpPris.value,
-					Kategori:inpKategori.value,
-					url:globalUrl
-				});
-		}
-		regVarer.addEventListener("submit",leggTilData_i_Firebase);
-	</script>	
-
-		
-
-	<script>
-		var inpBilde  = document.getElementById('inpBilde');
-		var bilde  = document.getElementById('bilde');
-		var opplastingsProsent = document.getElementById('opplastingsProsent');
-		var globalUrl = "";		
-		function leggTilBilde(evt) {
-			var file = evt.target.files[0];
-			var bilder = filDatabase.ref("bilder/" + file.name);
-			var mensBildeLastesNed = bilder.put(file);
-			mensBildeLastesNed.on("state_changed",
-				function progress(snapshot) {
-					var prosent=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-					opplastingsProsent.value = prosent;
-				},
-				function error(err){
-					alert("Noe hendte - filen kan ikke lastes opp...");
-				},
-				function complete() {
-					bilder.getDownloadURL().then(function(url){
-											globalUrl=url;
-											bilde.src=url
-										});					
-				}
-			);
-		}
-		inpBilde.addEventListener("change", leggTilBilde);
-	</script>
 
 
 

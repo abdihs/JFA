@@ -27,27 +27,6 @@
 
 	<div class="top"></div>
 	
-	<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
-	<script>
-	  var config = {
-   		apiKey: "AIzaSyAGep4GxcnomGeFciQDLHPI24A9cg6ULCk",
-    	authDomain: "ikea-prosjekt.firebaseapp.com",
-    	databaseURL: "https://ikea-prosjekt.firebaseio.com",
-    	storageBucket: "ikea-prosjekt.appspot.com",
-    	messagingSenderId: "368672913845"
- 	 	};
- 	 	firebase.initializeApp(config);
-	</script>
-
-	<script type="text/javascript">
-		var tekstDatabase = firebase.database();
-		var filDatabase  = firebase.storage();
-		var Registrer = tekstDatabase.ref("Registrer"); 
-	</script>
-	
-
-
-		
 
 		<div class="box3">
         <h1 id="OmOss" style="z-index: 3;">Registrer</h1>
@@ -59,15 +38,19 @@
 		
 		<div class="skrivinn">
 			<label>
-			<label>
-			<textarea  class="box2" type="text" required placeholder="Navn"></textarea>
+
+
+			
+			<INPUT class="box2" TYPE="Text" required placeholder="Navn:" NAME="textBox1">
+
+
+			
+			<INPUT class="box2" TYPE="Text" required placeholder="Email-adress:"  NAME="textBox1">
+
+			
+			<INPUT class="box2" TYPE="Text" required placeholder="Bekreft email-adress:"  NAME="textBox1">
+
 			</label>
-			<label>
-			<textarea class="box2" type="number" required placeholder="Mail-adress"></textarea>
-			</label>
-			<label>
-			<textarea class="box2" type="text" required placeholder="Bekreft mail-adress"></textarea>
-			</label></label>
 			
 			<label>
 			<select  class="box2">

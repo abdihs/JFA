@@ -58,17 +58,25 @@
 
 		
 		<div class="skrivinn">
-		<form id="regVarer">			
+		<form id="regVarer">
+
+			<label>			
 			<textarea  class="box2" id="inpVarenavn" type="text" required placeholder="Name"></textarea>
+			</label>
+			<label>
 			<textarea class="box2" id="inpPris" type="number" required placeholder="Email-adress"></textarea>
+			</label>
+			<label>
 			<textarea class="box2" id="inpVarenavn" type="text" required placeholder="Approve email-adress"></textarea>
+			</label>
+			<label>
 			<select class="box2" id="inpKategori">
 				<option>Choose category</option>
 				<option value="stue">At home with somebody </option>
 				<option value="soverom">Venue</option>
 				<option value="kjøkken">Something else</option>
 			</select>
-			
+			</label>
 			<br>
 
 			<button class="button2" onclick="validation();">

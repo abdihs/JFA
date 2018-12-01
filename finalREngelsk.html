@@ -22,58 +22,37 @@
         <a href = "simpleengelsk.html"> Simplyfied</a>
       <a href="finalR.html">Norwegian</a>
       
-      </div>
     </div>
+   </div>
 
-	<div class="top"></div>
-	
-	<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
-	<script>
-	  var config = {
-   		apiKey: "AIzaSyAGep4GxcnomGeFciQDLHPI24A9cg6ULCk",
-    	authDomain: "ikea-prosjekt.firebaseapp.com",
-    	databaseURL: "https://ikea-prosjekt.firebaseio.com",
-    	storageBucket: "ikea-prosjekt.appspot.com",
-    	messagingSenderId: "368672913845"
- 	 	};
- 	 	firebase.initializeApp(config);
-	</script>
+	<div class="box3">
 
-	<script type="text/javascript">
-		var tekstDatabase = firebase.database();
-		var filDatabase  = firebase.storage();
-		var Registrer = tekstDatabase.ref("Registrer"); 
-	</script>
-	
-
-
-		
-
-		<div class="box3">
         <h1 id="OmOss" style="z-index: 3;">Register</h1>
 		<p style="color: lightgrey;" class="posisjonforteksten">Our organisation is made for the ones that are lonely in the christmas time. Approximately ten percent does not have anyone to celebrate christmas with. Our vision is to minimize this number, and for 
 		<br><br>
 		Please write a message to us if you have any questions, feedback or if you have experienced this yourself.  
 		</p>
 
-
 		
 		<div class="skrivinn">
 			<label>
-			<label>
-			<textarea class="box2" type="text" required placeholder="Name"></textarea>
+
+			
+			<INPUT class="box2" TYPE="Text" required placeholder="Name:" NAME="textBox1">
+
+
+			
+			<INPUT class="box2" TYPE="Text" required placeholder="Email-adress:"  NAME="textBox1">
+
+			
+			<INPUT class="box2" TYPE="Text" required placeholder="Approve email-adress:"  NAME="textBox1">
+
 			</label>
-			<label>
-			<textarea class="box2" type="number" required placeholder="Mail-adress"></textarea>
-			</label>
-			<label>
-			<textarea class="box2" type="text" required placeholder="Approve mail-adress"></textarea>
-			</label></label>
 			
 			<label>
 			<select  class="box2">
 				<option>Choose category</option>
-				<option value="Hjem">At home with somebody	</option>
+				<option value="Hjem">At home with somebody</option>
 				<option value="Vert">Venue</option>
 				<option value="Annet">Something else</option>
 			</select>
@@ -90,7 +69,7 @@
 			function validation()
 			{
 
-				swal("Godkjent!", "All informasjon blir sendt til deg på E-mail! :-)", "success");
+				swal("Approve!", "All information will be sent youre Email-adress :-)", "success");
 
 			}
 		</script>	
